@@ -1,0 +1,115 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0//EN" "http://www.w3.org/TR/REC-html40/strict.dtd">
+<html>
+<head>
+	<title>refNum &rsaquo; Quilt</title>
+	<!--HEAD_BEGIN-->
+	<meta http-equiv="Content-Type" content="text/html; charset=UTF8">
+	
+	
+
+	
+
+	<script type="text/javascript" src="src/js/refnum.js"></script>
+
+	<script src="http://www.google-analytics.com/urchin.js" type="text/javascript"></script>
+	<script type="text/javascript">_uacct = "UA-1732444-2";urchinTracker();</script>
+
+	<link type="text/css" href="src/css/refnum.css" rel=stylesheet>
+	<!--HEAD_END-->
+</head>
+<body>
+
+<div id="content">
+<!--#include virtual="/src/inc/nav.inc" -->
+<script language="javascript">navSelect("dev")</script>
+
+<a href="index.html">
+<div id="page_strap_frame"   style="background:url('src/img/page_strap_quilt.png');">
+<div id="page_strap_content" style="background:url('src/img/page_strap_quilt.jpg'); background-repeat: no-repeat; background-position: 22px 16px;"></div></div></a>
+<div id="page_body">
+<div id="page_content">
+
+
+
+<table>
+<tr>
+<td valign=top>
+	<ul id="menu">
+	<li class="subtitle">Quilt</li>
+		<li><a href="index.html">Home</a></li>
+		<li><a href="licence.html">Licence</a></li>
+		<li><a href="version.html">Version History</a></li>
+	<li class="subtitle">Using Quilt</li>
+		<li><a href="xcode.html">Using Xcode</a></li>
+		<li><a href="visualstudio.html">Using Visual Studio</a></li>
+	</ul>
+</td>
+<td valign=top>
+
+
+
+<h1>Quilt</h1>
+<p>
+Quilt integrates Qt's meta-compilers into native Xcode and Visual Studio projects,
+allowing automatic pre-processing without using <tt>qmake</tt>.
+</p>
+
+<p>
+Although <tt>qmake</tt> can generate simple Xcode/Visual Studio project files, it does not
+support new IDE features such as external <tt>.xcconfig</tt> or <tt>.vsprops</tt> files.
+</p>
+
+<p>
+Quilt supports both <a href="xcode.html">Xcode</a> for Mac OS X, and
+<a href="visualstudio.html">Visual Studio</a> for Microsoft Windows.
+</p>
+
+
+
+<h2>Usage</h2>
+<p>
+Quilt is normally invoked by a pre-build step in the development environment, and a
+build rule during the actual build.
+</p>
+
+<p>
+During the pre-build phase Quilt scans your source tree for files that contain Q_OBJECT
+macros. It then generates a single <tt>.moc</tt> file, which identifies the source files
+that require pre-processing.
+</p>
+
+<p>
+During the actual build Quilt is invoked to process any Qt files (.moc, .qrc, or .ui)
+in the project. It invokes the appropriate Qt meta-compiler for each file, and adds the
+derived source to the build.
+</p>
+
+<p>
+Once Quilt has been attached to your project, the identification and compilation of Qt
+source is automatic.
+</p>
+
+
+
+
+
+</td>
+</tr>
+</table>
+
+
+
+</div>
+</div>
+<div id="page_footer"></div>
+</div>
+
+
+
+<!--FOOTER_BEGIN-->
+<div id="footer">
+Copyright &copy; 2006-2010 <a href="http://www.refnum.com/">refNum Software</a>
+</div>
+<!--FOOTER_END-->
+</body>
+</html>

@@ -1,0 +1,211 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0//EN" "http://www.w3.org/TR/REC-html40/strict.dtd">
+<html>
+<head>
+	<title>refNum &rsaquo; Quilt &rsaquo; Visual Studio</title>
+	<!--HEAD_BEGIN-->
+	<meta http-equiv="Content-Type" content="text/html; charset=UTF8">
+	
+	
+
+	
+
+	<script type="text/javascript" src="src/js/refnum.js"></script>
+
+	<script src="http://www.google-analytics.com/urchin.js" type="text/javascript"></script>
+	<script type="text/javascript">_uacct = "UA-1732444-2";urchinTracker();</script>
+
+	<link type="text/css" href="src/css/refnum.css" rel=stylesheet>
+	<!--HEAD_END-->
+</head>
+<body>
+
+<div id="content">
+<!--#include virtual="/src/inc/nav.inc" -->
+<script language="javascript">navSelect("dev")</script>
+
+<a href="index.html">
+<div id="page_strap_frame"   style="background:url('src/img/page_strap_quilt.png');">
+<div id="page_strap_content" style="background:url('src/img/page_strap_quilt.jpg'); background-repeat: no-repeat; background-position: 22px 16px;"></div></div></a>
+<div id="page_body">
+<div id="page_content">
+
+
+
+<table>
+<tr>
+<td valign=top>
+	<ul id="menu">
+	<li class="subtitle">Quilt</li>
+		<li><a href="index.html">Home</a></li>
+		<li><a href="licence.html">Licence</a></li>
+		<li><a href="version.html">Version History</a></li>
+	<li class="subtitle">Using Quilt</li>
+		<li><a href="xcode.html">Using Xcode</a></li>
+		<li><a href="visualstudio.html">Using Visual Studio</a></li>
+	</ul>
+</td>
+<td valign=top>
+
+
+
+<h1>Using Visual Studio</h1>
+<h2>1. Configure Environment</h2>
+<p>
+Define a <tt>QT_ROOT</tt> environment variable that points to the location of your Qt
+installation, and a <tt>QUILT_ROOT</tt> environment variable that points to the directory
+containing Quilt.
+</p>
+
+<p>
+You will also need to install <a href="http://rubyinstaller.org/">Ruby 1.8.6</a> or later.
+</p>
+
+
+
+<h2>2. Create Pre-Build Step</h2>
+<p>
+Open your project's properties, and create a pre-build step with a command line of:
+</p>
+
+<div class="box_code_yellow">"$(QUILT_ROOT)\quilt.rb" --moc  --in="$(ProjectDir)\..\Source"
+                               --out="$(ProjectDir)\..\Source\QtGlue.moc"
+</div>
+
+<p>
+For example:
+</p>
+
+<div align=center>
+<a href="img/vs_build.png" class="plain"><img src="img/vs_build.png" class="width450"></a>
+</div>
+
+<p>
+The <tt>--in</tt> parameter controls the directory to scan for files that contain Q_OBJECT
+definitions, and the <tt>--out</tt> parameter indicates where to save the list of files that
+require moccing (this file must have a <tt>.moc</tt> extension).
+</p>
+
+<p>
+A <tt>--exclude</tt> parameter can also be supplied, which defines a regexp to filter the
+scanned files (e.g., "--exclude=Mac*" will exclude any files starting with "Mac").
+</p>
+
+
+
+<h2>3. Add Rule</h2>
+<p>
+Right-click on your project, select "Custom Build Rules...", "Find Existing...", then select
+the Support/Visual Studio/Quilt.rules file:
+</p>
+
+<div align=center>
+<a href="img/vs_rules.png" class="plain"><img src="img/vs_rules.png" class="width450"></a>
+</div>
+
+
+
+<h2>4. Add Source</h2>
+<p>
+Create an empty text file as your <tt>QtGlue.moc</tt> file, and add it to the project.
+</p>
+
+<p>
+After adding this file, drag it from the "Resources" section of the project into the "Sources"
+section.
+</p>
+
+<p>
+If you have any <tt>.qrc</tt> or <tt>.ui</tt> files, these should also be added to the project.
+</p>
+
+<p>
+Quit Visual Studio, and edit the <tt>.vcproj</tt> file with a text editor. For each file to
+be processed by Quilt (<tt>.moc</tt>, <tt>.qrc</tt>, or <tt>.ui</tt> files), add a corresponding
+<tt>.cpp</tt> file reference in the "Sources" section.
+</p>
+
+<p>
+For example:
+</p>
+
+<div class="box_code_yellow">&lt;File
+    RelativePath="Source\QtGlue.moc"
+    &gt;
+&lt;/File&gt;
+&lt;File
+    RelativePath="$(IntDir)\QtGlue.cpp"
+    &gt;
+&lt;/File&gt;
+</div>
+
+<p>
+For each <tt>foo.xxx</tt> file, Quilt generates a <tt>$(IntDir)\foo.cpp</tt> file. These files
+must be included in the project to be compiled, however since these are relative to
+<tt>$(IntDir)</tt> they must be added by editing the project file directly.
+</p>
+
+
+
+<h2>How It Works</h2>
+<ol>
+<li>
+	<p>
+	The pre-build step will invoke quilt to update the <tt>.moc</tt> file, before Visual Studio
+	performs dependency checking for the project.
+	</p>
+	
+	<p>
+	This must be done from a pre-build step, to ensure it is invoked before dependency checking.
+	</p>
+</li>
+
+
+<li>
+	<p>
+	The build rule will invoke quilt for any <tt>.moc</tt>, <tt>.qrc</tt>, or <tt>.ui</tt>
+	files in the project.
+	</p>
+	
+	<p>
+	Quilt will then invoke the appropriate meta-compiler, and generate derived source
+	files within <tt>$(IntDir)</tt>.
+</li>
+
+
+<li>
+	<p>
+	Visual Studio will compile the derived source files during the build, and include their
+	object code when linking.
+	</p>
+	
+	<p>
+	Since build rules can't inherit compiler options, these derived source files must be added
+	to the project to ensure they are compiled with the same configuration as normal source.
+	</p>
+</li>
+</ol>
+
+
+
+
+
+</td>
+</tr>
+</table>
+
+
+
+</div>
+</div>
+<div id="page_footer"></div>
+</div>
+
+
+
+<!--FOOTER_BEGIN-->
+<div id="footer">
+Copyright &copy; 2006-2010 <a href="http://www.refnum.com/">refNum Software</a>
+</div>
+<!--FOOTER_END-->
+</body>
+</html>

@@ -1,0 +1,19 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<VisualStudioToolFile
+	Name="Quilt"
+	Version="8.00"
+	>
+	<Rules>
+		<CustomBuildRule
+			Name="Quilt Compiler"
+			DisplayName="Quilt Compiler"
+			CommandLine="&quot;$(QUILT_ROOT)\quilt.rb&quot; --build --in=&quot;$(InputPath)&quot; --out=&quot;$(IntDir)\$(InputName).cpp&quot;"
+			Outputs="&quot;$(IntDir)\$(InputName).cpp&quot;"
+			FileExtensions="*.moc;*.qrc;*.ui"
+			ExecutionDescription="$(InputFileName)"
+			>
+			<Properties>
+			</Properties>
+		</CustomBuildRule>
+	</Rules>
+</VisualStudioToolFile>
