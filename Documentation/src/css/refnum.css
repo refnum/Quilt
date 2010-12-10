@@ -11,7 +11,6 @@ body {
 	width:					820px;
 	min-height:				500px;
 	margin:					75px auto 10px auto;
-//border: 1px solid red;
 }
 
 #footer {
@@ -61,13 +60,11 @@ h6							{ font-size: xx-small;	}
 	height:					45px;
 	margin-top:				20px;
 	margin-bottom:			10px;
-//border: 1px solid red;
 }
 
 #nav_bar {
 	float:					right;
 	padding-right:			15px;
-//border: 1px solid cyan;
 }
 
 #nav a						{
@@ -75,7 +72,6 @@ h6							{ font-size: xx-small;	}
 	display:				inline-block;
 	height:					45px;
 	border-bottom:			none;
-//border: 1px solid red;
 }
 
 #nav a#apps					{ width:78px;														}
@@ -139,32 +135,27 @@ h6							{ font-size: xx-small;	}
 #page_strap_frame {
 	width:					820px;
 	height:					215px;
-//border: 1px solid green;
 }
 
 #page_strap_content {
 	width:					820px;
 	height:					215px;
-//border: 1px solid green;
 }
 
 #page_body {
 	background:				url("../img/page_body.png") repeat-y;
 	width:					820px;
 	min-height:				190px;
-//border: 1px solid yellow;
 }
 
 #page_content {
 	padding:				5px 40px; 
-//border: 1px solid red;
 }
 
 #page_footer {
 	background:				url("../img/page_footer.png");
 	width:					820px;
 	height:					30px;
-//border: 1px solid cyan;
 }
 
 
@@ -176,12 +167,10 @@ h6							{ font-size: xx-small;	}
 	width:					440px;
 	height:					620px;
 	margin:					auto;
-//border: 1px solid blue;
 }
 
 #logo_offset {
 	height:					120px;
-//border: 1px solid red;
 }
 
 
@@ -191,10 +180,10 @@ h6							{ font-size: xx-small;	}
 /* Tables */
 table.icons {
 	border-spacing:			40px 5px;
-//border: 1px solid red;
 }
 
 table.icons td {
+	vertical-align:			top;
 	text-align:				center;
 	width:					128px;
 }
@@ -207,7 +196,42 @@ table.icons img {
 table.badges {
 	margin:					40px auto 20px auto;
 	width:					80%;
-//border: 1px solid blue;
+}
+
+table.list_header {
+	background:				#ddddff;
+	font-weight:			bold;
+	line-height:			200%;
+	margin:					20px 10px 0px 10px;
+	padding-left:			10px;
+	text-shadow:			1px 1px 1px rgba(0, 0, 0, 0.1);
+	width:					95%;
+
+	-moz-border-radius-topright:			5px;
+	-moz-border-radius-topleft:				5px;
+
+	-webkit-border-top-right-radius:		5px;
+	-webkit-border-top-left-radius:			5px;
+}
+
+table.list {
+	background:				#eeeeff;
+	background:				-webkit-gradient(linear, left top, left bottom, from(#eeeeff), to(#fcfcff));
+	margin:					0px 10px 0px 10px;
+	padding-left:			10px;
+	width:					95%;
+
+	-moz-border-radius-bottomright:			5px;
+	-moz-border-radius-bottomleft:			5px;
+
+	-webkit-border-bottom-right-radius:		5px;
+	-webkit-border-bottom-left-radius:		5px;
+}
+
+table.list th {
+	font-weight:			normal;
+	text-align:				left;
+	width:					150px;
 }
 
 
